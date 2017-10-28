@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "standard && node index.js"
+    "test": "standard && node index.js",
+    "dev": "nodemon index.js"
   },
   "author": "PhantomX7",
   "license": "ISC",
