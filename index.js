@@ -7,6 +7,7 @@ const LocalStrategy = require('passport-local')
 const User = require('./models/user')
 const methodOverride = require('method-override')
 const path = require('path')
+const flash = require('connect-flash')
 
 // apply routes
 const indexRoutes = require('./routes/index')
@@ -17,6 +18,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.set('view engine', 'ejs')
 app.use(express.static(path.join(__dirname, '/public')))
 app.use(methodOverride('_method'))
+app.use(flash())
 
 // connect database
 
@@ -35,8 +37,11 @@ passport.use(new LocalStrategy(User.authenticate()))
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
+// save data into locals
 app.use((req, res, next) => {
   res.locals.currentUser = req.user
+  res.locals.error = req.flash('error')
+  res.locals.success = req.flash('success')
   next()
 })
 
