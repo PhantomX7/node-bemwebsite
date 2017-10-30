@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "standard && node index.js",
-    "dev": "nodemon index.js"
+    "dev": "standard --fix && standard && nodemon index.js"
   },
   "author": "PhantomX7",
   "license": "ISC",

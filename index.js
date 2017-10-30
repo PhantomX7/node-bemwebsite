@@ -21,7 +21,7 @@ app.use(methodOverride('_method'))
 // connect database
 
 const url = process.env.DATABASEURL || 'mongodb://localhost/website_bem'
-mongoose.connect(url)
+mongoose.connect(url, {useMongoClient: true})
 
 // PASSPORT CONFIGURATION
 app.use(require('express-session')({

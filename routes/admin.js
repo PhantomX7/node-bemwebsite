@@ -30,7 +30,7 @@ router.post('/register', (req, res) => {
       return res.render('register')
     }
     passport.authenticate('local')(req, res, () => {
-      res.redirect('/')
+      res.redirect('/admin')
     })
   })
 })
@@ -42,8 +42,8 @@ router.get('/login', (req, res) => {
 
 // handling login logic
 router.post('/login', passport.authenticate('local', {
-  successRedirect: '/',
-  failureRedirect: '/login'
+  successRedirect: '/admin',
+  failureRedirect: '/admin/login'
 }), (req, res) => {
 })
 
