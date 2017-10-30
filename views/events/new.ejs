@@ -1,0 +1,30 @@
+<% include ../partials/header %>
+<div style="width: 30%; margin: 25px auto;">
+    <form action="/admin/events" method="POST">
+        <div class="form-group">
+            <label for="name">Title</label>
+            <input class="form-control" type="text" name="title" id="title" placeholder="Yosemite" required>
+        </div>
+        <div class="form-group">
+            <label for="image">Image Url</label>
+            <input class="form-control" type="text" name="image" id="image" placeholder="https://source.unsplash.com/TCCCKgdFmBo" required>
+        </div>
+        <div class="form-group">
+            <label for="content">Content</label>
+            <textarea class="form-control" id="content" rows="8" name="content" placeholder="Enter a content" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="location">Date</label>
+            <input class="form-control" type="date" name="date" id="date" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input class="form-control" type="text" name="description" id="description" placeholder="enter description" required>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-lg btn-primary btn-block">Submit!</button>
+        </div>
+    </form>
+    <a href="/admin/events">Go Back</a>
+</div>
+<% include ../partials/footer %>

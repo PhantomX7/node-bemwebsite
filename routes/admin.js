@@ -9,7 +9,7 @@ const User = require('../models/user')
 // ====================
 
 router.get('/', middleware.isLoggedIn, (req, res) => {
-  res.render('admin')
+  res.redirect('/admin/events')
 })
 
 //  ===========
@@ -30,7 +30,7 @@ router.post('/register', (req, res) => {
     }
     passport.authenticate('local')(req, res, () => {
       req.flash('success', 'Welcome to Bem Website ' + user.username)
-      res.redirect('/admin')
+      res.redirect('/admin/events')
     })
   })
 })

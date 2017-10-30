@@ -1,0 +1,20 @@
+<% include ../partials/header %>
+<div class="col-12">
+    <div class="thumbnail">
+        <img class="img-responsive" src="<%= event.image %>">
+        <div class="caption-full">
+            <h4><a><%=event.name%></a></h4>
+            <p><%= event.content %></p>
+            <p><%= event.description %></p>
+            <p><%= event.date %></p>
+            <p><em>Submitted by: <%= event.author.username %></em>, <%= moment(event.createdAt).fromNow() %></em></p>
+            <% if(currentUser && event.author.id.equals(currentUser._id)){ %>
+                <a class="btn btn-xs btn-warning" href="/admin/events/<%=event._id%>/edit">Edit Post</a>
+                <form class="delete-form" action="/admin/events/<%= event._id %>?_method=DELETE" method="POST">
+                    <button class="btn btn-xs btn-danger">Delete</button>
+                </form>
+            <% } %>
+        </div>
+    </div>
+</div>
+<% include ../partials/footer %>
