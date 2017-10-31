@@ -1,0 +1,17 @@
+<% include ../partials/header %>
+<div class="row text-center" style="display:flex; flex-wrap: wrap;">
+   <% events.forEach(function(event){ %>
+       <div class="col-md-3 col-sm-6">
+           <div class="img-thumbnail">
+              <img class="img-thumbnail" src="<%= event.image %>">
+              <div class="caption">
+                  <h1><%= event.title %></h1>
+              </div>
+              <p>
+                  <a href="/admin/events/<%= event._id %>" class="btn btn-primary">More Info</a>
+              </p>
+           </div>
+       </div>
+   <% }); %>
+</div>
+<% include ../partials/footer %>

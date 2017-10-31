@@ -12,6 +12,7 @@ const flash = require('connect-flash')
 // apply routes
 const indexRoutes = require('./routes/index')
 const adminRoutes = require('./routes/admin')
+const eventRoutes = require('./routes/events')
 
 // apply middleware
 app.use(bodyParser.urlencoded({extended: true}))
@@ -19,6 +20,7 @@ app.set('view engine', 'ejs')
 app.use(express.static(path.join(__dirname, '/public')))
 app.use(methodOverride('_method'))
 app.use(flash())
+app.locals.moment = require('moment')
 
 // connect database
 
@@ -47,6 +49,7 @@ app.use((req, res, next) => {
 
 app.use('/', indexRoutes)
 app.use('/admin', adminRoutes)
+app.use('/admin/events', eventRoutes)
 
 // port config
 const PORT = process.env.PORT || 8080
