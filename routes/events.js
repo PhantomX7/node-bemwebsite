@@ -23,18 +23,20 @@ router.post('/', middleware.isLoggedIn, (req, res) => {
   const image = req.body.image
   const description = req.body.description
   const date = req.body.date
+  const finished = req.body.finished
   const author = {
     id: req.user._id,
     username: req.user.username
   }
 
-  const newEvent = {title, content, image, description, date, author}
+  const newEvent = {title, content, image, description, date, finished, author}
   // Create a new event and save to DB
   Event.create(newEvent, function (err, newlyCreated) {
     if (err) {
       console.log(err)
     } else {
           // redirect back to events page
+      req.flash('success', 'you created an event')
       res.redirect('/admin/events')
     }
   })

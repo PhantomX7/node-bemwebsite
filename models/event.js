@@ -6,6 +6,7 @@ const eventSchema = new mongoose.Schema({
   date: Date,
   description: String,
   createdAt: { type: Date, default: Date.now },
+  finished: Boolean,
   author: {
     id: {
       type: mongoose.Schema.Types.ObjectId,
