@@ -1,13 +1,13 @@
 <% include ../partials/headerAdmin %>
 <div style="width: 30%; margin: 25px auto;">
-    <form action="/admin/events/<%=event._id%>?_method=PUT" method="POST">
+    <form action="/admin/events/<%=event._id%>?_method=PUT" method="POST" enctype="multipart/form-data">
         <div class="form-group">
             <label for="name">Title</label>
             <input class="form-control" type="text" name="title" id="title" placeholder="Yosemite" value="<%= event.title %>" required>
         </div>
         <div class="form-group">
-            <label for="image">Image Url</label>
-            <input class="form-control" type="text" name="image" id="image" placeholder="https://source.unsplash.com/TCCCKgdFmBo" value="<%= event.image %>" required>
+          <label for="image">Image</label>
+          <input type="file" id="image" name="image" accept="image/*" required>
         </div>
         <div class="form-group">
             <label for="content">Content</label>
@@ -19,7 +19,7 @@
         </div>
         <div class="form-check">
           <label class="form-check-label">
-            <input type="checkbox" class="form-check-input" name="finished" value="<%= event.date %>">
+            <input type="checkbox" class="form-check-input" name="finished" value="<%= Boolean(event.finished) %>">
             Finished
           </label>
         </div>

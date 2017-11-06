@@ -1,10 +1,11 @@
 const express = require('express')
 const router = express.Router()
 const Event = require('../models/event')
-const middleware = require('../middleware')
+const {isLoggedIn} = require('../middleware/index')
+const { cloudinary, upload } = require('../middleware/cloudinary')
 
 // INDEX - show all events
-router.get('/', middleware.isLoggedIn, (req, res) => {
+router.get('/', isLoggedIn, (req, res) => {
     // Get all events from DB
   Event.find({}, function (err, allEvents) {
     if (err) {
@@ -16,34 +17,45 @@ router.get('/', middleware.isLoggedIn, (req, res) => {
 })
 
 // CREATE - add new event to DB
-router.post('/', middleware.isLoggedIn, (req, res) => {
-  // get data from form and add to event object
-  const title = req.body.title
-  const content = req.body.content
-  const image = req.body.image
-  const description = req.body.description
-  const date = req.body.date
-  const finished = req.body.finished
-  const author = {
-    id: req.user._id,
-    username: req.user.username
+router.post('/', isLoggedIn, upload.single('image'), async (req, res) => {
+  if (!req.file) {
+    req.flash('error', 'Please upload an image.')
+    return res.redirect('back')
   }
-
-  const newEvent = {title, content, image, description, date, finished, author}
-  // Create a new event and save to DB
-  Event.create(newEvent, function (err, newlyCreated) {
-    if (err) {
-      console.log(err)
-    } else {
-          // redirect back to events page
-      req.flash('success', 'you created an event')
-      res.redirect('/admin/events')
+  try {
+    // upload image to cloudinary and set resulting url to image variable
+    let result = await cloudinary.uploader.upload(req.file.path)
+    let image = result.secure_url
+    // get data from form and add to event object
+    const title = req.body.title
+    const content = req.body.content
+    const description = req.body.description
+    const date = req.body.date
+    const finished = Boolean(req.body.finished)
+    const author = {
+      id: req.user._id,
+      username: req.user.username
     }
-  })
+
+    const newEvent = {title, content, image, description, date, finished, author}
+    // Create a new event and save to DB
+    await Event.create(newEvent, function (err, newlyCreated) {
+      if (err) {
+        console.log(err)
+      } else {
+            // redirect back to events page
+        req.flash('success', 'you created an event')
+        res.redirect('/admin/events')
+      }
+    })
+  } catch (err) {
+    req.flash('error', err.message)
+  }
+  res.redirect('/admin/events')
 })
 
 // NEW - show form to create new event
-router.get('/new', middleware.isLoggedIn, (req, res) => {
+router.get('/new', isLoggedIn, (req, res) => {
   res.render('events/new')
 })
 
@@ -63,7 +75,7 @@ router.get('/:id', (req, res) => {
 
 // EDIT
 
-router.get('/:id/edit', middleware.isLoggedIn, (req, res) => {
+router.get('/:id/edit', isLoggedIn, (req, res) => {
   Event.findById(req.params.id, function (err, foundEvent) {
     if (err) {
       req.flash('error', err.message)
@@ -75,15 +87,18 @@ router.get('/:id/edit', middleware.isLoggedIn, (req, res) => {
 })
 
 // UPDATE
-router.put('/:id', middleware.isLoggedIn, (req, res) => {
+router.put('/:id', isLoggedIn, (req, res) => {
   // get data from form and add to event object
   const title = req.body.title
   const content = req.body.content
   const image = req.body.image
   const description = req.body.description
   const date = req.body.date
+  const finished = Boolean(req.body.finished)
+  console.log(finished)
+  console.log(req.body.finished)
 
-  const updatedEvent = {title, content, image, description, date}
+  const updatedEvent = {title, content, image, description, date, finished}
 
   Event.findByIdAndUpdate(req.params.id, {$set: updatedEvent}, function (err, event) {
     if (err) {
@@ -97,7 +112,7 @@ router.put('/:id', middleware.isLoggedIn, (req, res) => {
 })
 
 // DESTROY
-router.delete('/:id', middleware.isLoggedIn, function (req, res) {
+router.delete('/:id', isLoggedIn, function (req, res) {
   Event.findByIdAndRemove(req.params.id, function (err) {
     if (err) {
       res.redirect('/admin/events')
