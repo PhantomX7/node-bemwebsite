@@ -4,16 +4,37 @@ const Event = require('../models/event')
 const {isLoggedIn} = require('../middleware/index')
 const { cloudinary, upload } = require('../middleware/cloudinary')
 
+function escapeRegex (text) {
+  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')
+}
+
 // INDEX - show all events
 router.get('/', isLoggedIn, (req, res) => {
+  if (req.query.search) {
+    const regex = new RegExp(escapeRegex(req.query.search), 'gi')
+    Event.find({
+      title: regex
+    }, (err, filteredEvent) => {
+      if (err) {
+        req.flash('error', 'Something went wrong')
+        res.redirect('back')
+      } else {
+        res.render('events/index', {
+          events: filteredEvent,
+          success: `Your search for "${req.query.search}" returned ${filteredEvent.length} result(s)...`
+        })
+      }
+    })
+  } else {
     // Get all events from DB
-  Event.find({}, function (err, allEvents) {
-    if (err) {
-      console.log(err)
-    } else {
-      res.render('events/index', {events: allEvents})
-    }
-  })
+    Event.find({}, function (err, allEvents) {
+      if (err) {
+        console.log(err)
+      } else {
+        res.render('events/index', {events: allEvents})
+      }
+    })
+  }
 })
 
 // CREATE - add new event to DB
