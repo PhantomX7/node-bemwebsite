@@ -30,7 +30,7 @@ body {
 
 }
 body {
-  color: #fff;
+  color: grey;
   text-align: center;
   text-shadow: 0 .05rem .1rem rgba(0,0,0,.5);
 }
@@ -104,6 +104,11 @@ body {
     float: right;
   }
 }
+
+.img-event{
+  border: none;
+}
+
 
 
 
