@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Event = require('../models/event')
-const {isLoggedIn} = require('../middleware/index')
+const { isLoggedIn } = require('../middleware/index')
 const { cloudinary, upload } = require('../middleware/cloudinary')
 
 function escapeRegex (text) {
@@ -10,28 +10,45 @@ function escapeRegex (text) {
 
 // INDEX - show all events
 router.get('/', isLoggedIn, (req, res) => {
+  const limit = 7
   if (req.query.search) {
     const regex = new RegExp(escapeRegex(req.query.search), 'gi')
-    Event.find({
+    Event.paginate({
       title: regex
+    }, {
+      page: req.query.page ? req.query.page : 1,
+      limit: limit
     }, (err, filteredEvent) => {
+      const events=filteredEvent.docs
       if (err) {
         req.flash('error', 'Something went wrong')
         res.redirect('back')
       } else {
         res.render('events/index', {
-          events: filteredEvent,
-          success: `Your search for "${req.query.search}" returned ${filteredEvent.length} result(s)...`
+          query: req.query.search,
+          currentPage: filteredEvent.page,
+          pages: filteredEvent.pages,
+          events: events,
+          success: `Your search for "${req.query.search}" returned ${events.length} result(s)...`
         })
       }
     })
   } else {
     // Get all events from DB
-    Event.find({}, function (err, allEvents) {
+    Event.paginate({},
+       {
+        page: req.query.page ? req.query.page : 1,
+        limit: limit
+      },  (err, allEvents) => {
       if (err) {
         console.log(err)
       } else {
-        res.render('events/index', {events: allEvents})
+        res.render('events/index', {
+          query: "",
+          currentPage: allEvents.page,
+          pages: allEvents.pages,
+          events: allEvents.docs
+        })
       }
     })
   }
@@ -65,6 +82,7 @@ router.post('/', isLoggedIn, upload.single('image'), async (req, res) => {
         console.log(err)
       } else {
             // redirect back to events page
+        console.log('event created')
         req.flash('success', 'you created an event')
         res.redirect('/admin/events')
       }
