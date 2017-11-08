@@ -19,13 +19,13 @@ router.get('/', isLoggedIn, (req, res) => {
       page: req.query.page ? req.query.page : 1,
       limit: limit
     }, (err, filteredEvent) => {
-      const events=filteredEvent.docs
+      const events = filteredEvent.docs
       if (err) {
         req.flash('error', 'Something went wrong')
         res.redirect('back')
       } else {
         res.render('events/index', {
-          query: req.query.search,
+          query: '&search=' + req.query.search,
           currentPage: filteredEvent.page,
           pages: filteredEvent.pages,
           events: events,
@@ -36,21 +36,21 @@ router.get('/', isLoggedIn, (req, res) => {
   } else {
     // Get all events from DB
     Event.paginate({},
-       {
+      {
         page: req.query.page ? req.query.page : 1,
         limit: limit
-      },  (err, allEvents) => {
-      if (err) {
-        console.log(err)
-      } else {
-        res.render('events/index', {
-          query: "",
-          currentPage: allEvents.page,
-          pages: allEvents.pages,
-          events: allEvents.docs
-        })
-      }
-    })
+      }, (err, allEvents) => {
+        if (err) {
+          console.log(err)
+        } else {
+          res.render('events/index', {
+            query: '',
+            currentPage: allEvents.page,
+            pages: allEvents.pages,
+            events: allEvents.docs
+          })
+        }
+      })
   }
 })
 
