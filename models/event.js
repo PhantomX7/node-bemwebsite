@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const mongoosePaginate = require('mongoose-paginate')
 const eventSchema = new mongoose.Schema({
   title: String,
   content: String,
@@ -15,5 +16,6 @@ const eventSchema = new mongoose.Schema({
     username: String
   }
 })
+eventSchema.plugin(mongoosePaginate)
 
 module.exports = mongoose.model('Event', eventSchema)
