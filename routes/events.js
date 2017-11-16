@@ -25,7 +25,7 @@ router.get('/', isLoggedIn, (req, res) => {
         res.redirect('back')
       } else {
         res.render('events/index', {
-          status:'',
+          status: '',
           query: '&search=' + req.query.search,
           currentPage: filteredEvent.page,
           pages: filteredEvent.pages,
@@ -45,7 +45,7 @@ router.get('/', isLoggedIn, (req, res) => {
           console.log(err)
         } else {
           res.render('events/index', {
-            status:'',
+            status: '',
             query: '',
             currentPage: allEvents.page,
             pages: allEvents.pages,
@@ -58,54 +58,27 @@ router.get('/', isLoggedIn, (req, res) => {
 
 router.get('/status/:finished', isLoggedIn, (req, res) => {
   let finished
-  req.params.finished==='finished'?finished=true:finished=false
+  req.params.finished === 'finished' ? finished = true : finished = false
   const limit = 7
-  if (req.query.search) {
-    const regex = new RegExp(escapeRegex(req.query.search), 'gi')
-    Event.paginate({
-      title: regex,
-      finished
-    }, {
-      page: req.query.page ? req.query.page : 1,
-      limit: limit
-    }, (err, filteredEvent) => {
-      const events = filteredEvent.docs
-      if (err) {
-        req.flash('error', 'Something went wrong')
-        res.redirect('back')
-      } else {
-        res.render('events/index', {
-          status:'/status',
-          query: '&search=' + req.query.search,
-          currentPage: filteredEvent.page,
-          pages: filteredEvent.pages,
-          events: events,
-          success: `Your search for "${req.query.search}" returned ${events.length} result(s)...`
-        })
-      }
-    })
-  } else {
-    // Get all events from DB
-    Event.paginate({
-      finished
-    },
-      {
-        page: req.query.page ? req.query.page : 1,
-        limit: limit
-      }, (err, allEvents) => {
-        if (err) {
-          console.log(err)
-        } else {
-          res.render('events/index', {
-            status:'/status',
-            query: '',
-            currentPage: allEvents.page,
-            pages: allEvents.pages,
-            events: allEvents.docs
-          })
-        }
+  // Get all events from DB
+  Event.paginate({
+    finished
+  }, {
+    page: req.query.page ? req.query.page : 1,
+    limit: limit
+  }, (err, allEvents) => {
+    if (err) {
+      console.log(err)
+    } else {
+      res.render('events/index', {
+        status: '/status',
+        query: '',
+        currentPage: allEvents.page,
+        pages: allEvents.pages,
+        events: allEvents.docs
       })
-  }
+    }
+  })
 })
 
 // CREATE - add new event to DB
@@ -210,27 +183,6 @@ router.put('/:id', isLoggedIn, upload.single('image'), async (req, res) => {
       res.redirect('/admin/events/' + event._id)
     }
   })
-  // // get data from form and add to event object
-  // const title = req.body.title
-  // const content = req.body.content
-  // const image = req.body.image
-  // const description = req.body.description
-  // const date = req.body.date
-  // const finished = Boolean(req.body.finished)
-  // console.log(finished)
-  // console.log(req.body.finished)
-  //
-  // const updatedEvent = {title, content, image, description, date, finished}
-  //
-  // Event.findByIdAndUpdate(req.params.id, {$set: updatedEvent}, function (err, event) {
-  //   if (err) {
-  //     req.flash('error', err.message)
-  //     res.redirect('back')
-  //   } else {
-  //     req.flash('success', 'Successfully Updated!')
-  //     res.redirect('/admin/events/' + event._id)
-  //   }
-  // })
 })
 
 // DESTROY
