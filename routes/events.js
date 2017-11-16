@@ -25,6 +25,7 @@ router.get('/', isLoggedIn, (req, res) => {
         res.redirect('back')
       } else {
         res.render('events/index', {
+          status:'',
           query: '&search=' + req.query.search,
           currentPage: filteredEvent.page,
           pages: filteredEvent.pages,
@@ -44,6 +45,59 @@ router.get('/', isLoggedIn, (req, res) => {
           console.log(err)
         } else {
           res.render('events/index', {
+            status:'',
+            query: '',
+            currentPage: allEvents.page,
+            pages: allEvents.pages,
+            events: allEvents.docs
+          })
+        }
+      })
+  }
+})
+
+router.get('/status/:finished', isLoggedIn, (req, res) => {
+  let finished
+  req.params.finished==='finished'?finished=true:finished=false
+  const limit = 7
+  if (req.query.search) {
+    const regex = new RegExp(escapeRegex(req.query.search), 'gi')
+    Event.paginate({
+      title: regex,
+      finished
+    }, {
+      page: req.query.page ? req.query.page : 1,
+      limit: limit
+    }, (err, filteredEvent) => {
+      const events = filteredEvent.docs
+      if (err) {
+        req.flash('error', 'Something went wrong')
+        res.redirect('back')
+      } else {
+        res.render('events/index', {
+          status:'/status',
+          query: '&search=' + req.query.search,
+          currentPage: filteredEvent.page,
+          pages: filteredEvent.pages,
+          events: events,
+          success: `Your search for "${req.query.search}" returned ${events.length} result(s)...`
+        })
+      }
+    })
+  } else {
+    // Get all events from DB
+    Event.paginate({
+      finished
+    },
+      {
+        page: req.query.page ? req.query.page : 1,
+        limit: limit
+      }, (err, allEvents) => {
+        if (err) {
+          console.log(err)
+        } else {
+          res.render('events/index', {
+            status:'/status',
             query: '',
             currentPage: allEvents.page,
             pages: allEvents.pages,
@@ -81,7 +135,7 @@ router.post('/', isLoggedIn, upload.single('image'), async (req, res) => {
       if (err) {
         console.log(err)
       } else {
-            // redirect back to events page
+        // redirect back to events page
         console.log('event created')
         req.flash('success', 'you created an event')
         res.redirect('/admin/events')
@@ -105,7 +159,6 @@ router.get('/:id', (req, res) => {
     if (err) {
       console.log(err)
     } else {
-      console.log(foundEvent)
             // render show template with that event
       res.render('events/show', {event: foundEvent})
     }
@@ -126,20 +179,29 @@ router.get('/:id/edit', isLoggedIn, (req, res) => {
 })
 
 // UPDATE
-router.put('/:id', isLoggedIn, (req, res) => {
+router.put('/:id', isLoggedIn, upload.single('image'), async (req, res) => {
+  let image
+  if (!req.body.imageurl) {
+    // upload image to cloudinary and set resulting url to image variable
+    const result = await cloudinary.uploader.upload(req.file.path)
+    image = result.secure_url
+  } else {
+    image = req.body.imageurl
+  }
   // get data from form and add to event object
   const title = req.body.title
   const content = req.body.content
-  const image = req.body.image
   const description = req.body.description
   const date = req.body.date
   const finished = Boolean(req.body.finished)
-  console.log(finished)
-  console.log(req.body.finished)
+  const author = {
+    id: req.user._id,
+    username: req.user.username
+  }
 
-  const updatedEvent = {title, content, image, description, date, finished}
-
-  Event.findByIdAndUpdate(req.params.id, {$set: updatedEvent}, function (err, event) {
+  const updatedEvent = {title, content, image, description, date, finished, author}
+  // Create a new event and save to DB
+  await Event.findByIdAndUpdate(req.params.id, {$set: updatedEvent}, function (err, event) {
     if (err) {
       req.flash('error', err.message)
       res.redirect('back')
@@ -148,6 +210,27 @@ router.put('/:id', isLoggedIn, (req, res) => {
       res.redirect('/admin/events/' + event._id)
     }
   })
+  // // get data from form and add to event object
+  // const title = req.body.title
+  // const content = req.body.content
+  // const image = req.body.image
+  // const description = req.body.description
+  // const date = req.body.date
+  // const finished = Boolean(req.body.finished)
+  // console.log(finished)
+  // console.log(req.body.finished)
+  //
+  // const updatedEvent = {title, content, image, description, date, finished}
+  //
+  // Event.findByIdAndUpdate(req.params.id, {$set: updatedEvent}, function (err, event) {
+  //   if (err) {
+  //     req.flash('error', err.message)
+  //     res.redirect('back')
+  //   } else {
+  //     req.flash('success', 'Successfully Updated!')
+  //     res.redirect('/admin/events/' + event._id)
+  //   }
+  // })
 })
 
 // DESTROY
