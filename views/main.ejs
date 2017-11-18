@@ -1,116 +1,104 @@
-<% include ./partials/header %>
-<div class="site-wrapper">
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BEM UPH Medan</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="stylesheets/main.css">
+</head>
+<body>
+  <!-- Forked from a template on Tutorialzine: https://tutorialzine.com/2016/06/freebie-landing-page-template-with-flexbox -->
+  <header>
+    <h2>
+      <a href="#">BEM</a>
+    </h2>
+    <nav>
+      <li><a href="#">HOME</a></li>
+      <li><a href="#">EVENT</a></li>
+      <li><a href="#">ABOUT</a></li>
+      <li><a href="#">CONTACT</a></li>
+    </nav>
+  </header>
 
- <div class="site-wrapper-inner">
+  <section class="hero">
+    <div class="background-image" style="background-image:url(http://static.celebuzz.com/uploads/2016/11/photo-1461505647352-19b93426098b-1478637743-640x427.jpeg);"></div>
+      <!-- <div class="hero-content-area">
+        <h1>Welcome</h1>
+        <h3>to BEM UPH Medan</h3>
+      </div> -->
+  </section>
 
-   <div class="cover-container">
+  <section class="upcoming">
+    <h3 class="title">Upcoming Events</h3>
+    <p>Stay in touch with our awesome event</p>
+    <hr>
+    <ul class="grid">
+        <li class="large" style="background-image:url(https://media.indiatimes.in/media/content/2016/Jun/travel-rough_1466676808_725x725.jpg)"></li>
+        <li class="small" style="background-image:url(https://media.indiatimes.in/media/content/2016/Jun/travel-rough_1466676808_725x725.jpg)"></li>
+        <li class="small" style="background-image:url(https://media.indiatimes.in/media/content/2016/Jun/travel-rough_1466676808_725x725.jpg)"></li>
+        <li class="large" style="background-image:url(https://media.indiatimes.in/media/content/2016/Jun/travel-rough_1466676808_725x725.jpg)"></li>
+    </ul>
+  </section>
 
-     <div class="masthead clearfix">
-       <div class="inner">
-         <h3 class="masthead-brand">Covera</h3>
-         <nav class="nav nav-masthead">
-           <a class="nav-link active" href="#">BERANDA</a>
-           <a class="nav-link" href="#">TENTANG</a>
-           <a class="nav-link" href="#">KEGIATAN</a>
-           <a class="nav-link" href="#">KONTAK</a>
-         </nav>
-       </div>
-     </div>
+  <section class="motto">
+    <h3 class="title">Our Motto</h3>
+    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+    <hr>
+    <ul class="grid">
+      <li>
+        <i class="fa fa-compass fa-4x"></i>
+        <h4>Guided Trips</h4>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+      </li>
+      <li>
+        <i class="fa fa-camera-retro fa-4x"></i>
+        <h4>Photo Trips</h4>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+      </li>
+      <li>
+        <i class="fa fa-bicycle fa-4x"></i>
+        <h4>Bicycle Trips</h4>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+      </li>
+    </ul>
+  </section>
 
-   </div>
+  <section class="testimonials">
+    <h3 class="title">Testimonials</h3>
+    <hr>
+    <p class="quote">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+    <p class="author">- Lorem Ipsum</p>
+    <p class="quote">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+    <p class="author">- Lorem Ipsum</p>
+    <p class="quote">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+    <p class="author">- Lorem Ipsum</p>
+  </section>
 
- </div>
+  <section class="contact">
+    <h3 class="title">Contact us</h3>
+    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+    <hr>
+    <form>
+      <input type="text" placeholder="Name">
+      <input type="email" placeholder="Email">
+      <textarea name="message" cols="40" rows="5" placeholder="Message"></textarea>
+      <a href="#" class="btn">Send</a>
+    </form>
+  </section>
 
-</div>
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <div class="my-5">
-          <h4>Upcoming Events</h4>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-lg-4 col-sm-12">
-      <div class="my-5">
-        <img src="http://www.planwallpaper.com/static/images/desktop-year-of-the-tiger-images-wallpaper.jpg" alt="..." class="img-thumbnail img-event">
-        Title
-        <br>
-        <span>Date : 20-20-2017</span>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer iaculis eros libero, in vulputate orci vestibulum quis....
-        </p>
-      </div>
-    </div>
-    <div class="col-lg-4 col-sm-12">
-      <div class="my-5">
-        <img src="http://www.planwallpaper.com/static/images/desktop-year-of-the-tiger-images-wallpaper.jpg" alt="..." class="img-thumbnail img-event">
-        Title
-        <br>
-        <span>Date : 20-20-2017</span>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer iaculis eros libero, in vulputate orci vestibulum quis....
-        </p>
-      </div>
-    </div>
-    <div class="col-lg-4 col-sm-12">
-      <div class="my-5">
-        <img src="http://www.planwallpaper.com/static/images/desktop-year-of-the-tiger-images-wallpaper.jpg" alt="..." class="img-thumbnail img-event">
-        Title
-        <br>
-        <span>Date : 20-20-2017</span>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer iaculis eros libero, in vulputate orci vestibulum quis....
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <div class="my-5">
-          <h4>Events</h4>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-lg-4 col-sm-12">
-      <div class="my-5">
-        <img src="http://www.planwallpaper.com/static/images/desktop-year-of-the-tiger-images-wallpaper.jpg" alt="..." class="img-thumbnail img-event">
-        Title
-        <br>
-        <span>Date : 20-20-2017</span>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer iaculis eros libero, in vulputate orci vestibulum quis....
-        </p>
-      </div>
-    </div>
-    <div class="col-lg-4 col-sm-12">
-      <div class="my-5">
-        <img src="http://www.planwallpaper.com/static/images/desktop-year-of-the-tiger-images-wallpaper.jpg" alt="..." class="img-thumbnail img-event">
-        Title
-        <br>
-        <span>Date : 20-20-2017</span>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer iaculis eros libero, in vulputate orci vestibulum quis....
-        </p>
-      </div>
-    </div>
-    <div class="col-lg-4 col-sm-12">
-      <div class="my-5">
-        <img src="http://www.planwallpaper.com/static/images/desktop-year-of-the-tiger-images-wallpaper.jpg" alt="..." class="img-thumbnail img-event">
-        Title
-        <br>
-        <span>Date : 20-20-2017</span>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer iaculis eros libero, in vulputate orci vestibulum quis....
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
+  <footer>
+    <p>made with <i class="fa fa-heart fa-1x"> by Team 16IS2</i></p>
+    <p>Badan Eksekutif Mahasiswa • UPH Medan © 2017</p>
+    <ul>
+      <li><a href="#"><i class="fa fa-twitter-square fa-2x"></i></a></li>
+      <li><a href="#"><i class="fa fa-facebook-square fa-2x"></i></a></li>
+      <li><a href="#"><i class="fa fa-snapchat-square fa-2x"></i></a></li>
+    </ul>
+  </footer>
 
 
-  <a href="/admin">Admin page</a>
-<% include ./partials/footer %>
+</body>
+</html>
