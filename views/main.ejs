@@ -1,28 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>BEM UPH Medan</title>
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="stylesheets/main.css">
-</head>
-<body>
-  <!-- Forked from a template on Tutorialzine: https://tutorialzine.com/2016/06/freebie-landing-page-template-with-flexbox -->
-  <header>
-    <h2>
-
-      <a href="/">BEM</a>
-    </h2>
-    <nav>
-      <li><a href="/">HOME</a></li>
-      <li><a href="#">EVENT</a></li>
-      <li><a href="/about">ABOUT</a></li>
-      <li><a href="#">CONTACT</a></li>
-    </nav>
-  </header>
+<% include ./partials/header %>
 
   <section class="hero">
     <div class="background-image" style="background-image:url(http://static.celebuzz.com/uploads/2016/11/photo-1461505647352-19b93426098b-1478637743-640x427.jpeg);"></div>
@@ -37,10 +13,7 @@
     <p>Stay in touch with our awesome event</p>
     <hr>
     <ul class="grid">
-        <li class="large" style="background-image:url(https://media.indiatimes.in/media/content/2016/Jun/travel-rough_1466676808_725x725.jpg)"></li>
-        <li class="small" style="background-image:url(https://media.indiatimes.in/media/content/2016/Jun/travel-rough_1466676808_725x725.jpg)"></li>
-        <li class="small" style="background-image:url(https://media.indiatimes.in/media/content/2016/Jun/travel-rough_1466676808_725x725.jpg)"></li>
-        <li class="large" style="background-image:url(https://media.indiatimes.in/media/content/2016/Jun/travel-rough_1466676808_725x725.jpg)"></li>
+        <li class="large" style="background-image:url(<%= event.image %>)"></li>
     </ul>
   </section>
 
@@ -90,16 +63,4 @@
     </form>
   </section>
 
-  <footer>
-    <p>made with <i class="fa fa-heart fa-1x"> by Team 16IS2</i></p>
-    <p>Badan Eksekutif Mahasiswa • UPH Medan © 2017</p>
-    <ul>
-      <li><a href="#"><i class="fa fa-twitter-square fa-2x"></i></a></li>
-      <li><a href="#"><i class="fa fa-facebook-square fa-2x"></i></a></li>
-      <li><a href="#"><i class="fa fa-snapchat-square fa-2x"></i></a></li>
-    </ul>
-  </footer>
-
-
-</body>
-</html>
+<% include ./partials/footer %>
