@@ -21,6 +21,9 @@
                    <%= event.description %>
               </div>
               <div>
+                   status: <%= event.finished?"finished":"upcoming" %>
+              </div>
+              <div>
                    Created by: <%= event.author.username %>
               </div>
 
@@ -34,11 +37,11 @@
   <% if(pages>1) { %>
     <nav class="justify-content-center">
       <ul class="justify-content-center pagination">
-          <li class="page-item <%= currentPage==1?'disabled':'' %>"><a class="page-link" href="/admin/events?page=<%= currentPage-1 %><%= query %>">Previous</a></li>
+          <li class="page-item <%= currentPage==1?'disabled':'' %>"><a class="page-link" href="/admin/events<%= status %>?page=<%= currentPage-1 %><%= query %>">Previous</a></li>
         <% for (let i = 1; i<= pages ; i++){ %>
-          <li class="page-item <%= (i == currentPage)? 'active':'' %>"><a class="page-link" href="/admin/events?page=<%= i %><%= query %>"><%= i %></a></li>
+          <li class="page-item <%= (i == currentPage)? 'active':'' %>"><a class="page-link" href="/admin/events<%= status %>?page=<%= i %><%= query %>"><%= i %></a></li>
         <% } %>
-          <li class="page-item <%= currentPage==pages?'disabled':'' %>"><a class="page-link" href="/admin/events?page=<%= currentPage+1 %><%= query %>">Next</a></li>
+          <li class="page-item <%= currentPage==pages?'disabled':'' %>"><a class="page-link" href="/admin/events<%= status %>?page=<%= currentPage+1 %><%= query %>">Next</a></li>
       </ul>
     </nav>
   <% } %>
