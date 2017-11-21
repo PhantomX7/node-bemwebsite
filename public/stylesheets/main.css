@@ -90,6 +90,7 @@ header{
   animation: 1s fadein 0.5s forwards;
   opacity: 0;
   color: #fff;
+  z-index: 3;
 }
 
 @keyframes fadein{
@@ -292,7 +293,8 @@ header nav li{
 }
 
 @media (max-width:1000px){
-  .contact form input{
+  .contact form input ,
+  .contact form textarea{
     flex-basis: 100%;
     margin : 0 0 20px 0;
   }
