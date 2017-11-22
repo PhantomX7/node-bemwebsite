@@ -34,5 +34,8 @@ router.get('/event', function (req, res) {
     }
   })
 })
+router.get('/eventshow', function (req, res) {
+  res.render('eventshow')
+})
 
 module.exports = router
