@@ -8,7 +8,7 @@
 							<article class="post featured">
 								<header class="major">
 									<span class="date"><%= moment(events[0].date).format("MMM Do YY") %></span>
-									<h2><a href="#"><%= events[0].title %></a></h2>
+									<h2><a href="/event/<%= events[0]._id%>"><%= events[0].title %></a></h2>
 									<p><%= events[0].content.substring(0,100)%></p>
 								</header>
 								<a href="/event/<%= events[0]._id%>" class="image main"><img src="<%= events[0].image%>" alt="" /></a>
@@ -23,7 +23,7 @@
 									<article>
 										<header>
 											<span class="date"><%= moment(events[i].date).format("MMM Do YY") %></span>
-											<h2><a href="#"><%= events[i].title %></h2>
+											<h2><a href="/event/<%= events[i]._id%>"><%= events[i].title %></h2>
 										</header>
 										<a href="/event/<%= events[i]._id%>" class="image fit"><img src="<%= events[0].image%>" alt="" /></a>
 										<p><%= events[i].content.substring(0,100)%></p>
