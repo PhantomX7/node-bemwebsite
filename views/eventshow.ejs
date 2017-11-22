@@ -1,61 +1,54 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>BEM UPH Medan</title>
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <!-- <link rel="stylesheet" href="stylesheets/main.css"> -->
-  <link rel="stylesheet" href="stylesheets/event.css">
-</head>
-<body>
-  <!-- Forked from a template on Tutorialzine: https://tutorialzine.com/2016/06/freebie-landing-page-template-with-flexbox -->
-  <header class="navbar">
-    <h2>
-      <a href="https://www.google.com">BEM</a>
-    </h2>
-    <nav>
-      <li><a href="#">HOME</a></li>
-      <li><a href="#">EVENT</a></li>
-      <li><a href="#">ABOUT</a></li>
-      <li><a href="#">CONTACT</a></li>
-    </nav>
-  </header>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>BEM UPH MEDAN</title>
+
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+        <link rel="stylesheet" href="stylesheets/event.css">
+    </head>
+    <body>
+      <div class="container">
+          <% if(error && error.length>0){ %>
+              <div class="alert alert-danger" role="alert"><%= error %></div>
+          <% } %>
+          <% if(success && success.length>0){ %>
+              <div class="alert alert-success" role="alert"><%= success %></div>
+          <% } %>
+      </div>
+      <header>
+        <h2>
+          <a href="/">BEM</a>
+        </h2>
+        <nav>
+          <li><a href="/">HOME</a></li>
+          <li><a href="/event">EVENT</a></li>
+          <li><a href="/about">ABOUT</a></li>
+          <li><a href="#">CONTACT</a></li>
+        </nav>
+      </header>
+
 
   <!-- Main -->
   <div class="page-content" style="padding-top:50px">
-<div id="wrapper" class="fade-in">
-<!-- Main -->
-<div id="main">
-<!-- Post -->
-<section class="post">
-<header class="major">
-  <span class="date">Date:</span>
-    <h1>asdasdasd</h1>
-    <p>paragraph1</p>
-</header>
-  <div class="image main"><img src="https://images.unsplash.com/photo-1466150036782-869a824aeb25?auto=format&fit=crop&w=1050&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D" alt="" /></div>
-  this is paragraph
-  <div class="image main"><img src="https://images.unsplash.com/photo-1466150036782-869a824aeb25?auto=format&fit=crop&w=1050&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D" alt="" /></div>
-  this is paragraph 2
-</section>
-</div>
-</div>
-</div>
+  <div id="wrapper" class="fade-in">
+    <!-- Main -->
+    <div id="main">
+    <!-- Post -->
+      <section class="posts">
+        <header class="major">
+          <span class="date"><%= moment(event.date).format("MMM Do YY") %></span>
+            <h1><%= event.title %></h1>
+        </header>
+        <div class="image main"><img src="https://images.unsplash.com/photo-1466150036782-869a824aeb25?auto=format&fit=crop&w=1050&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D" alt="" /></div>
+        <p><%= event.content %></p>
+      </section>
+    </div>
+  </div>
+  </div>
 
-
-  <footer class="footerbar">
-    <p>made with <i class="fa fa-heart fa-1x"> by Team 16IS2</i></p>
-    <p>Badan Eksekutif Mahasiswa • UPH Medan © 2017</p>
-    <ul>
-      <li><a href="#"><i class="fa fa-twitter-square fa-2x"></i></a></li>
-      <li><a href="#"><i class="fa fa-facebook-square fa-2x"></i></a></li>
-      <li><a href="#"><i class="fa fa-snapchat-square fa-2x"></i></a></li>
-    </ul>
-  </footer>
-
-
-</body>
-</html>
+<% include ./partials/footer %>

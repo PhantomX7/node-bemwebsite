@@ -14,6 +14,7 @@ require('dotenv').config()
 const indexRoutes = require('./routes/index')
 const adminRoutes = require('./routes/admin')
 const eventRoutes = require('./routes/events')
+const userRoutes = require('./routes/user')
 
 // apply middleware
 app.use(bodyParser.urlencoded({extended: true}))
@@ -49,6 +50,7 @@ app.use((req, res, next) => {
 })
 
 app.use('/', indexRoutes)
+app.use('/event', userRoutes)
 app.use('/admin', adminRoutes)
 app.use('/admin/events', eventRoutes)
 
