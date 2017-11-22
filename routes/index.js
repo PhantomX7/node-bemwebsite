@@ -8,5 +8,8 @@ router.get('/', function (req, res) {
 router.get('/event', function (req, res) {
   res.render('event')
 })
+router.get('/eventshow', function (req, res) {
+  res.render('eventshow')
+})
 
 module.exports = router
