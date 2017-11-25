@@ -1,37 +1,4 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>BEM UPH MEDAN</title>
-
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-        <link rel="stylesheet" href="../stylesheets/event.css">
-    </head>
-    <body>
-      <div class="container">
-          <% if(error && error.length>0){ %>
-              <div class="alert alert-danger" role="alert"><%= error %></div>
-          <% } %>
-          <% if(success && success.length>0){ %>
-              <div class="alert alert-success" role="alert"><%= success %></div>
-          <% } %>
-      </div>
-      <header class="navbar">
-        <h2>
-          <a href="/">BEM</a>
-        </h2>
-        <nav>
-          <li><a href="/">HOME</a></li>
-          <li><a href="/event">EVENT</a></li>
-          <li><a href="/about">ABOUT</a></li>
-          <li><a href="#">CONTACT</a></li>
-        </nav>
-      </header>
-
+<% include ./partials/header %>
 
   <!-- Main -->
   <div class="page-content" style="padding-top:50px">
@@ -39,13 +6,17 @@
     <!-- Main -->
     <div id="main">
     <!-- Post -->
-      <section class="posts">
+      <section class="post">
         <header class="major">
           <span class="date"><%= moment(event.date).format("MMM Do YY") %></span>
             <h1><%= event.title %></h1>
         </header>
         <div class="image main">
+<<<<<<< HEAD
           <img src="https://images.unsplash.com/photo-1466150036782-869a824aeb25?auto=format&fit=crop&w=1050&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D" alt="" />
+=======
+          <img src="<%= event.image %>" alt="" />
+>>>>>>> ccfd6f2dd1668be1578fe708ca368755e62a238b
         </div>
         <p><%= event.content %></p>
       </section>
