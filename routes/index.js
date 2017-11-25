@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Event = require('../models/event')
 var nodemailer = require('nodemailer')
-var GMAIL_PASSWORD = process.env.GMAIL_PASSWORD || 'Alderbeagle2017'
+var GMAIL_PASSWORD = process.env.GMAIL_PASSWORD || 'password'
 
 router.get('/', (req, res) => {
   Event.find().sort({datefield: -1}).limit(1).exec(function (err, event) {
