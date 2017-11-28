@@ -3,10 +3,6 @@
 
   <section class="hero">
     <div class="background-image" style="background-image:url(http://res.cloudinary.com/dh9veqgrn/image/upload/v1511352674/1503464564201_qwggwn.jpg);"></div>
-      <!-- <div class="hero-content-area">
-        <h1>Welcome</h1>
-        <h3>to BEM UPH Medan</h3>
-      </div> -->
   </section>
 
   <section class="upcoming">
@@ -56,11 +52,11 @@
     <h3 class="title">Contact us</h3>
     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
     <hr>
-    <form>
-      <input type="text" placeholder="Name">
-      <input type="email" placeholder="Email">
+    <form action="/" method="post">
+      <input type="text" placeholder="Name" name="name" required>
+      <input type="email" placeholder="Email" name="email" required>
       <textarea name="message" cols="40" rows="5" placeholder="Message"></textarea>
-      <a href="#" class="btn">Send</a>
+      <button type="submit" name="button" class="btn-primary">Send</button>
     </form>
   </section>
   <% } %>
