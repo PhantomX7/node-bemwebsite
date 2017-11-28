@@ -126,10 +126,6 @@ body-parser@1.18.2, body-parser@^1.18.2:
     raw-body "2.3.2"
     type-is "~1.6.15"
 
-bootstrap-star-rating@^4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/bootstrap-star-rating/-/bootstrap-star-rating-4.0.2.tgz#6405e26202500d0cebb38e243d5c7bc4b40b75b8"
-
 brace-expansion@^1.1.7:
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-1.1.8.tgz#c07b211c7c952ec1f8efd51a77ef0d1d3990a292"

@@ -2,22 +2,23 @@
 
   <!-- Main -->
   <div class="page-content" style="padding-top:50px">
-  <div id="wrapper" class="fade-in">
-    <!-- Main -->
-    <div id="main">
-    <!-- Post -->
-      <section class="post">
-        <header class="major">
-          <span class="date"><%= moment(event.date).format("MMM Do YY") %></span>
-            <h1><%= event.title %></h1>
-        </header>
-        <div class="image main">
-          <img src="<%= event.image %>" alt="" />
-        </div>
-        <p><%= event.content %></p>
-      </section>
+    <div id="wrapper" class="fade-in">
+      <!-- Main -->
+      <div id="main">
+      <!-- Post -->
+        <section class="post">
+          <header class="major">
+            <span class="date"><%= moment(event.date).format("MMM Do YY") %></span>
+              <h1><%= event.title %></h1>
+          </header>
+          <div class="image main">
+            <img src="<%= event.image %>" alt="" />
+          </div>
+          <p><%= event.content %></p>
+        </section>
+      </div>
     </div>
-  </div>
+
   </div>
 
 <% include ./partials/footer %>
