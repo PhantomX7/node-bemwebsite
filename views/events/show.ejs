@@ -1,5 +1,5 @@
 <% include ../partials/headerAdmin %>
-<div class="col-12 card m-2">
+<div class="col-12 card m-2 p-2">
     <div class="">
         <img class=" card-img-top" src="<%= event.image %>">
         <div class="card-body">
@@ -10,9 +10,10 @@
             border: 0;
             height: 1px;
             background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));">
-          <p>Content: <%= event.content %></p>
+          <p>Caption: <%= event.caption %></p>
           <p>Desc: <%= event.description %></p>
-          <p>Date: <%= moment(event.date).format("MMM Do YY") %></p>
+          <p>Date Start: <%= moment(event.dateStart).format("MMM Do YY") %></p>
+          <p>Date End: <%= moment(event.dateEnd).format("MMM Do YY") %></p>
           <p>Status: <%= event.finished?"Finished":"Upcoming" %></p>
           <p><em>Submitted by: <%= event.author.username %></em>, <%= moment(event.createdAt).fromNow() %></em></p>
           <% if(currentUser && event.author.id.equals(currentUser._id)){ %>
@@ -21,6 +22,15 @@
                   <button class="btn btn-xs btn-danger">Delete</button>
               </form>
           <% } %>
+
+        </div>
+        <h2 class="text-center">Photo Memories</h2>
+        <div class="row">
+          <% photos.forEach(function(photo){ %>
+            <div class="col-4">
+              <img class="img-thumbnail" src="<%= photo %>">
+            </div>
+          <% }) %>
         </div>
     </div>
 </div>

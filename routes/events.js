@@ -93,16 +93,18 @@ router.post('/', isLoggedIn, upload.single('image'), async (req, res) => {
     let image = result.secure_url
     // get data from form and add to event object
     const title = req.body.title
-    const content = req.body.content
+    const caption = req.body.caption
     const description = req.body.description
-    const date = req.body.date
+    const dateStart = req.body.dateStart
+    const dateEnd = req.body.dateEnd
     const finished = Boolean(req.body.finished)
+    const photos = req.body.photos
     const author = {
       id: req.user._id,
       username: req.user.username
     }
 
-    const newEvent = {title, content, image, description, date, finished, author}
+    const newEvent = {title, caption, image, description, dateStart, dateEnd, finished, photos, author}
     // Create a new event and save to DB
     await Event.create(newEvent, function (err, newlyCreated) {
       if (err) {
@@ -132,8 +134,14 @@ router.get('/:id', (req, res) => {
     if (err) {
       console.log(err)
     } else {
-            // render show template with that event
-      res.render('events/show', {event: foundEvent})
+      let photos
+      if (foundEvent.photos) {
+        photos = foundEvent.photos.split(',')
+      } else {
+        photos = []
+      }
+      // render show template with that event
+      res.render('events/show', {event: foundEvent, photos: photos})
     }
   })
 })
@@ -163,16 +171,18 @@ router.put('/:id', isLoggedIn, upload.single('image'), async (req, res) => {
   }
   // get data from form and add to event object
   const title = req.body.title
-  const content = req.body.content
+  const caption = req.body.caption
   const description = req.body.description
-  const date = req.body.date
+  const dateStart = req.body.dateStart
+  const dateEnd = req.body.dateEnd
   const finished = Boolean(req.body.finished)
+  const photos = req.body.photos
   const author = {
     id: req.user._id,
     username: req.user.username
   }
 
-  const updatedEvent = {title, content, image, description, date, finished, author}
+  const updatedEvent = {title, caption, image, description, dateStart, dateEnd, finished, photos, author}
   // Create a new event and save to DB
   await Event.findByIdAndUpdate(req.params.id, {$set: updatedEvent}, function (err, event) {
     if (err) {

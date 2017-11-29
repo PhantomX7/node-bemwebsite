@@ -14,11 +14,11 @@
               <h3><a href="/admin/events/<%= event._id %>" class="text-dark"><strong><%= event.title %></strong></a></h3>
               <div>
                 <p>
-                   <%= event.content.substring(0,100) %> <a href="/admin/events/<%= event._id %>" class="text-info">read more</a>
+                   <%= event.description.substring(0,100) %> <a href="/admin/events/<%= event._id %>" class="text-info">read more</a>
                 </p>
               </div>
               <div>
-                   <%= event.description %>
+                   <%= event.caption %>
               </div>
               <div>
                    status: <%= event.finished?"finished":"upcoming" %>

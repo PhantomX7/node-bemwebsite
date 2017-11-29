@@ -6,16 +6,24 @@
             <input class="form-control" type="text" name="title" id="title" placeholder="Yosemite" required>
         </div>
         <div class="form-group">
+            <label for="name">Caption</label>
+            <input class="form-control" type="text" name="caption" id="caption" placeholder="Enter a Caption" required>
+        </div>
+        <div class="form-group">
           <label for="image">Image</label>
           <input class="form-control" type="file" id="image" name="image" accept="image/*" required>
         </div>
         <div class="form-group">
-            <label for="content">Content</label>
-            <textarea class="form-control" id="content" rows="8" name="content" placeholder="Enter a content" required></textarea>
+            <label for="content">Description</label>
+            <textarea class="form-control" id="description" rows="8" name="description" placeholder="Enter a description" required></textarea>
         </div>
         <div class="form-group">
-            <label for="location">Date</label>
-            <input class="form-control" type="date" name="date" id="date" required>
+            <label for="location">Date Start</label>
+            <input class="form-control" type="date" name="dateStart" id="dateStart" required>
+        </div>
+        <div class="form-group">
+            <label for="location">Date End</label>
+            <input class="form-control" type="date" name="dateEnd" id="dateEnd" required>
         </div>
         <div class="form-check">
           <label class="form-check-label">
@@ -24,8 +32,8 @@
           </label>
         </div>
         <div class="form-group">
-            <label for="description">Description</label>
-            <input class="form-control" type="text" name="description" id="description" placeholder="enter description" required>
+            <label for="description">Photo URL(separate with comma,no space)</label>
+            <input class="form-control" type="text" name="photos" id="photos" placeholder="enter photo url separated with comma" required>
         </div>
         <div class="form-group">
             <button class="btn btn-lg btn-primary btn-block">Submit!</button>

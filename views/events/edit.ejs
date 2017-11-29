@@ -6,6 +6,10 @@
             <input class="form-control" type="text" name="title" id="title" placeholder="Enter Event title" value="<%= event.title %>" required>
         </div>
         <div class="form-group">
+            <label for="name">Caption</label>
+            <input class="form-control" type="text" name="caption" id="caption" placeholder="Enter a Caption" value="<%= event.caption %>" required>
+        </div>
+        <div class="form-group">
           <label for="image">Image (dont upload if you don't want to change picture)</label>
           <input class="form-control" type="file" id="image" name="image" accept="image/*">
         </div>
@@ -14,12 +18,16 @@
           <input class="form-control" type="text" id="imageurl" name="imageurl" placeholder="leave this blank if you want to upload new image" value="<%= event.image %>">
         </div>
         <div class="form-group">
-            <label for="content">Content</label>
-            <textarea class="form-control" id="content" rows="8" name="content" placeholder="Enter a content" required><%= event.content %></textarea>
+            <label for="content">Description</label>
+            <textarea class="form-control" id="description" rows="8" name="description" placeholder="Enter a description" required><%= event.description %></textarea>
         </div>
         <div class="form-group">
-            <label for="location">Date</label>
-            <input class="form-control" type="date" name="date" id="date" value="<%= event.date %>" required>
+            <label for="location">Date Start</label>
+            <input class="form-control" type="date" name="dateStart" id="dateStart" required>
+        </div>
+        <div class="form-group">
+            <label for="location">Date End</label>
+            <input class="form-control" type="date" name="dateEnd" id="dateEnd" required>
         </div>
         <div class="form-check">
           <label class="form-check-label">
@@ -28,8 +36,8 @@
           </label>
         </div>
         <div class="form-group">
-            <label for="description">Description</label>
-            <input class="form-control" type="text" name="description" id="description" placeholder="enter description" value="<%= event.description %>" required>
+            <label for="description">Photo URL(separate with comma,no space)</label>
+            <input class="form-control" type="text" name="photos" id="photos" placeholder="enter description" value="<%= event.photos %>" required>
         </div>
         <div class="form-group">
             <button class="btn btn-lg btn-primary btn-block">Submit!</button>

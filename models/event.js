@@ -2,9 +2,10 @@ const mongoose = require('mongoose')
 const mongoosePaginate = require('mongoose-paginate')
 const eventSchema = new mongoose.Schema({
   title: String,
-  content: String,
+  caption: String,
   image: String,
-  date: Date,
+  dateStart: Date,
+  dateFinish: Date,
   description: String,
   createdAt: { type: Date, default: Date.now },
   finished: Boolean,
@@ -15,12 +16,8 @@ const eventSchema = new mongoose.Schema({
     },
     username: String
   },
-  comments: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Comment'
-    }
-  ]
+  photos: String
+
 })
 eventSchema.plugin(mongoosePaginate)
 
