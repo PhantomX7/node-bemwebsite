@@ -7,14 +7,30 @@
       <div id="main">
       <!-- Post -->
         <section class="post">
-          <header class="major">
+          <!-- <header class="major">
             <span class="date"><%= moment(event.date).format("MMM Do YY") %></span>
-              <h1><%= event.title %></h1>
-          </header>
+          </header> -->
           <div class="image main">
             <img src="<%= event.image %>" alt="" />
           </div>
-          <p><%= event.description %></p>
+          <div class="description" style="text-align:center">
+            <h1><%= event.title %></h1>
+            <h4><%= event.caption %></h4>
+            <h4><%= moment(event.dateStart).format("Do MMMM YYYY") %> - <%= moment(event.dateFinish).format("Do MMMM YYYY") %></h4>
+            <p style="text-align:center "><%- event.description %></p>
+            <% if(event.finished){ %>
+              <h5>Done</h5>
+              <% } else { %>
+                <h5 style="background-color:yellow">Coming soon</h5>
+                <% } %>
+                <br>
+                <h3>Photo Memories</h3>
+          </div>
+          <% photos.forEach(function(photo){ %>
+            <div class="col-4">
+              <img class="img-thumbnail" src="<%= photo %>">
+            </div>
+          <% }) %>
         </section>
       </div>
     </div>
