@@ -6,7 +6,7 @@ router.get('/', (req, res) => {
   Event.paginate({
   }, {
     page: req.query.page ? req.query.page : 1,
-    limit: 1,
+    limit: 5,
     sort: {datefield: -1}
   }, (err, filteredEvent) => {
     const events = filteredEvent.docs
