@@ -226,24 +226,20 @@ header nav li{
   }
 }
 
-/*testimonials sections*/
-.testimonials .quote{
-  font-size: 22px;
-  font-weight: 300;
-  line-height: 1.5;
-  margin:40px 0px 25px;
+/*structure section*/
+
+.structure img{
+  width: 60%;
+  opacity: 0;
+  animation:2s fadein 0.5s forwards;
 }
 
-@media (max-width:800px){
-  .testimonials .quote{
-    font-size: 18px;
-    margin:15px 0;
-  }
-
-  .testimonials .author{
-    font-size:14px;
+@keyframes fadein{
+  100%{
+    opacity: 1;
   }
 }
+
 
 /*contact section*/
 .contact form {

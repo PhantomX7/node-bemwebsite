@@ -32,7 +32,13 @@ router.get('/:id', (req, res) => {
     if (err) {
       console.log(err)
     } else {
-      res.render('eventshow', {page: 'event', event: foundEvent})
+      let photos
+      if (foundEvent.photos) {
+        photos = foundEvent.photos.split(',')
+      } else {
+        photos = []
+      }
+      res.render('eventshow', {page: 'event', event: foundEvent, photos: photos})
     }
   })
 })
