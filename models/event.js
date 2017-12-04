@@ -17,7 +17,6 @@ const eventSchema = new mongoose.Schema({
     username: String
   },
   photos: String
-
 })
 eventSchema.plugin(mongoosePaginate)
 
