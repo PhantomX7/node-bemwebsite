@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
   }, {
     page: req.query.page ? req.query.page : 1,
     limit: 5,
-    sort: {datefield: -1}
+    sort: {dateStart: -1}
   }, (err, filteredEvent) => {
     const events = filteredEvent.docs
     if (err) {
