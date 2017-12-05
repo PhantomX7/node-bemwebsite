@@ -29,7 +29,9 @@
             <h3>Photo Memories</h3>
             <div class="row">
               <% photos.forEach(function(photo){ %>
-                  <img class="col-12" class="img-thumbnail" src="<%= photo %>">
+                <div class="col-12">
+                  <img class="w-100" class="img-thumbnail" src="<%= photo %>">
+                </div>
               <% }) %>
             </div>
           <% } %>
