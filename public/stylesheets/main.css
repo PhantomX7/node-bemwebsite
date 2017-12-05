@@ -183,33 +183,15 @@ header nav li{
 }
 
 /*upcoming section*/
-.upcoming .grid li {
-  height: 1200px;
-  padding: 20px;
-  background-clip: content-box;
-  background-size: cover;
-  background-position: center;
+.upcoming img{
+  width: 60%;
+  opacity: 0;
+  animation:2s fadein 0.5s forwards;
 }
 
-.upcoming .grid li.small{
-  flex-basis:30%;
-}
-
-.upcoming .grid li.large{
-  flex-basis: 70%;
-}
-
-@media (max-width: 1100px) {
-  .upcoming .grid li.small,
-  .upcoming .grid li.large{
-    flex-basis:50%;
-  }
-}
-
-@media (max-width: 800px) {
-  .upcoming .grid li.small,
-  .upcoming .grid li.large{
-    flex-basis:100%;
+@keyframes fadein{
+  100%{
+    opacity: 1;
   }
 }
 
