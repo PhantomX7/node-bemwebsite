@@ -16,7 +16,7 @@
           <div class="description" style="text-align:center">
             <h1><%= event.title %></h1>
             <h4><%= event.caption %></h4>
-            <h4><%= moment(event.dateStart).format("Do MMMM YYYY") %> - <%= moment(event.dateFinish).format("Do MMMM YYYY") %></h4>
+            <h4><%= moment(event.dateStart).format("Do MMMM YYYY") %> - <%= moment(event.dateEnd).format("Do MMMM YYYY") %></h4>
             <p style="text-align:center "><%- event.description %></p>
             <% if(event.finished){ %>
               <h5>Done</h5>
