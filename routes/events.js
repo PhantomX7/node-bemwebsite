@@ -106,6 +106,7 @@ router.post('/', isLoggedIn, upload.single('image'), async (req, res) => {
 
     const newEvent = {title, caption, image, description, dateStart, dateEnd, finished, photos, author}
     // Create a new event and save to DB
+    console.log(newEvent)
     await Event.create(newEvent, function (err, newlyCreated) {
       if (err) {
         console.log(err)
