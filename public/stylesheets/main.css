@@ -184,7 +184,7 @@ header nav li{
 
 /*upcoming section*/
 .upcoming .grid li {
-  height: 1000px;
+  height: 1200px;
   padding: 20px;
   background-clip: content-box;
   background-size: cover;
