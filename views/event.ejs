@@ -26,7 +26,7 @@
 											<h2><a href="/event/<%= events[i]._id%>"><%= events[i].title %></h2>
 										</header>
 										<a href="/event/<%= events[i]._id%>" class="image fit"><img src="<%= events[i].image%>" alt="" /></a>
-										<p><%= events[i].description.substring(0,100)%></p>
+										<p><%- events[i].description.substring(0,100)%></p>
 										<ul class="actions">
 											<li><a href="/event/<%= events[i]._id%>" class="button">Full Story</a></li>
 										</ul>
