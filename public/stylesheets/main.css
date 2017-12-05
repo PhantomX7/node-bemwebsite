@@ -22,6 +22,7 @@ a{
 
 a:hover {
   opacity: 1;
+  text-decoration: none;
 }
 
 a.btn {
@@ -183,7 +184,7 @@ header nav li{
 
 /*upcoming section*/
 .upcoming .grid li {
-  height: 350px;
+  height: 600px;
   padding: 20px;
   background-clip: content-box;
   background-size: cover;

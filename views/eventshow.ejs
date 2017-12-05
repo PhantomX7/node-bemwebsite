@@ -1,7 +1,7 @@
 <% include ./partials/header %>
 
   <!-- Main -->
-  <div class="page-content" style="padding-top:50px">
+  <div class="page-content" style="padding-top:110px">
     <div id="wrapper" class="fade-in">
       <!-- Main -->
       <div id="main">
@@ -24,13 +24,17 @@
                 <h5 style="background-color:yellow">Coming soon</h5>
                 <% } %>
                 <br>
-                <h3>Photo Memories</h3>
           </div>
-          <% photos.forEach(function(photo){ %>
-            <div class="col-4">
-              <img class="img-thumbnail" src="<%= photo %>">
-            </div>
-          <% }) %>
+          <% if(photos) { %>
+            <h3>Photo Memories</h3>
+          <% } %>
+          <div class="row">
+            <% photos.forEach(function(photo){ %>
+              <div class="col-12">
+                <img class="img-thumbnail" src="<%= photo %>">
+              </div>
+            <% }) %>
+          </div>
         </section>
       </div>
     </div>
