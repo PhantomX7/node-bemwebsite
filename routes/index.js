@@ -5,11 +5,7 @@ var nodemailer = require('nodemailer')
 var GMAIL_PASSWORD = process.env.GMAIL_PASSWORD || 'password'
 
 router.get('/', (req, res) => {
-<<<<<<< HEAD
-  Event.find().sort({dateStart: 'descending'}).limit(1).exec(function (err, event) {
-=======
   Event.find().sort({dateStart: -1}).limit(1).exec(function (err, event) {
->>>>>>> a3e294dac8b925a2e20e854af8b2ccc0c9a72c06
     if (err) {
       console.log(err)
     } else {

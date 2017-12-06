@@ -1,7 +1,7 @@
 <% include ./partials/header %>
 
   <!-- Main -->
-  <div class="page-content" style="padding-top:50px">
+  <div class="page-content" style="padding-top:110px">
     <div id="wrapper" class="fade-in">
       <!-- Main -->
       <div id="main">
@@ -16,7 +16,7 @@
           <div class="description" style="text-align:center">
             <h1><%= event.title %></h1>
             <h4><%= event.caption %></h4>
-            <h4><%= moment(event.dateStart).format("Do MMMM YYYY") %> - <%= moment(event.dateFinish).format("Do MMMM YYYY") %></h4>
+            <h4><%= moment(event.dateStart).format("Do MMMM YYYY") %> - <%= moment(event.dateEnd).format("Do MMMM YYYY") %></h4>
             <p style="text-align:center "><%- event.description %></p>
             <% if(event.finished){ %>
               <h5>Done</h5>
@@ -24,13 +24,17 @@
                 <h5 style="background-color:yellow">Coming soon</h5>
                 <% } %>
                 <br>
-                <h3>Photo Memories</h3>
           </div>
-          <% photos.forEach(function(photo){ %>
-            <div class="col-4">
-              <img class="img-thumbnail" src="<%= photo %>">
+          <% if(photos) { %>
+            <h3>Photo Memories</h3>
+            <div class="row">
+              <% photos.forEach(function(photo){ %>
+                <div class="col-12">
+                  <img class="w-100" class="img-responsive" src="<%= photo %>">
+                </div>
+              <% }) %>
             </div>
-          <% }) %>
+          <% } %>
         </section>
       </div>
     </div>

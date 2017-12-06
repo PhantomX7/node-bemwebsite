@@ -36,7 +36,7 @@ router.get('/:id', (req, res) => {
       if (foundEvent.photos) {
         photos = foundEvent.photos.split(',')
       } else {
-        photos = []
+        photos = null
       }
       res.render('eventshow', {page: 'event', event: foundEvent, photos: photos})
     }
